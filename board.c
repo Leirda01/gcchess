@@ -8,10 +8,13 @@ Board move(Board board, Square src, Square dest) {
 }
 
 Board set_square(Board board, Piece piece, Square dest) {
-
-
 }
 
 Piece* get_square(Board board, Square src) {
   return board.board[src.x][src.y];
+}
+
+Square str_to_square(char str[2]) {
+  Square square = { str[0] - 'a', str[1] - '1'};
+  return square;
 }

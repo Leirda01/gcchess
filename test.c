@@ -62,8 +62,8 @@ void board_with_black_rook() {
   Square free_square = {c, e};
   Square occupied_square = {a, h};
 
-  assert( !get_square(board, free_square) );
-  assert( get_square(board, occupied_square) );
+  assert( !get_square(board, str_to_square("c5")) );
+  assert( get_square(board, str_to_square("a8")) );
   assert( board.board[a][h]->color = black );
   assert( board.board[a][h]->name = rook );
   printf("\tOK.\n");
