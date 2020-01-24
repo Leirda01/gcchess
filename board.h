@@ -11,10 +11,11 @@ typedef enum range {
   a, b, c, d, e, f, g, h
 }Range;
 
-typedef struct coord {
+typedef struct square {
   Range x, y;
-}Coord;
+}Square;
 
-Board move(Board board, Coord source, Coord dest);
+_Bool is_free(Board board, Square src);
+Board move(Board board, Square src, Square dest);
 
 #endif
