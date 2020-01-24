@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
-#include "board.h"
-#include "pieces.h"
+#include "../src/board.h"
+#include "../src/pieces.h"
 
 void black_rook();
 void board_with_black_rook();
@@ -59,8 +59,6 @@ void board_with_black_rook() {
   Board board = {0};
   Piece black_rook = {black, rook};
   board.board[a][h] = &black_rook;
-  Square free_square = {c, e};
-  Square occupied_square = {a, h};
 
   assert( !get_square(board, str_to_square("c5")) );
   assert( get_square(board, str_to_square("a8")) );
