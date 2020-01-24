@@ -1,45 +1,75 @@
+#include <assert.h>
 #include <stdio.h>
-#include "pieces.h"
 #include "board.h"
+#include "pieces.h"
 
-void test_pieces();
-void test_board();
-void test_move();
+void assert_a_black_rook();
+void assert_a_board_with_black_rook();
+void assert_a_piece_move_to_free_square();
+void assert_a_piece_move_to_occupied_square();
 
 int main() {
-
-  puts("\n============§============\n");
-  test_pieces();
+  
   puts("");
-  test_board();
-  puts("");
+  assert_a_black_rook();
+  assert_a_board_with_black_rook();
+  assert_a_piece_move_to_free_square();
+  assert_a_piece_move_to_occupied_square();
 
   return 0;
 }
 
-void test_move() {
+void assert_a_piece_move_to_occupied_square() {
+  printf("Declare a board with a rook on a8, a bishop on c5, then move rook to c5");
 
-  return;
-}
-void test_board() {
-  printf("declare board with black rook on a8\n");
   Board board = {0};
   Piece black_rook = {black, rook};
-  board.board[a][7] = &black_rook;
+  Piece white_bishop = {white, bishop};
+  board.board[a][h] = &black_rook;
+  board.board[c][e] = &white_bishop;
+  Coord src = {a, h}, dest = {c, e};
+  board = move(board, src, dest);
 
-  printf("%p should be nil (b2 empty)\n", board.board[1][1]);
-  printf("%p should'nt be nil (a8 occupied)\n", board.board[a][7]);
-  printf("%d should be 1 (black on a8)\n", board.board[a][7]->color);
-  printf("%d should be 3 (rook on a8)\n", board.board[a][7]->name);
-  printf("%p should be nil (c5 empty)\n", board.board[c][4]);
-
-  return;
+  assert( !board.board[a][h] );
+  assert( board.board[c][e] );
+  assert( board.board[c][e]->color = black );
+  assert( board.board[c][e]->color = rook );
+  printf("\tOK.\n");
 }
-void test_pieces() {
-  printf("declare a black rook\n");
-  Piece black_rook = {black, rook};
-  printf("%d should be 1 (black)\n", black_rook.color);
-  printf("%d should be 3 (rook)\n", black_rook.name);
+void assert_a_piece_move_to_free_square() {
+  printf("Declare a board with a rook on a8, then move it to c5");
 
-  return;
+  Board board = {0};
+  Piece black_rook = {black, rook};
+  board.board[a][h] = &black_rook;
+  Coord src = {a, h}, dest = {c, e};
+  board = move(board, src, dest);
+
+  assert( !board.board[a][h] );
+  assert( board.board[c][e] );
+  assert( board.board[c][e]->color = black );
+  assert( board.board[c][e]->color = rook );
+  printf("\tOK.\n");
+}
+void assert_a_board_with_black_rook() {
+  printf("Declare a board with a rook on a8");
+
+  Board board = {0};
+  Piece black_rook = {black, rook};
+  board.board[a][h] = &black_rook;
+
+  assert( !board.board[c][e] );
+  assert( board.board[a][h] );
+  assert( board.board[a][h]->color = black );
+  assert( board.board[a][h]->name = rook );
+  printf("\tOK.\n");
+}
+void assert_a_black_rook() {
+  printf("Declare a black rook");
+
+  Piece black_rook = {black, rook};
+
+  assert( black_rook.color = black );
+  assert( black_rook.name = rook );
+  printf("\tOK.\n");
 }
