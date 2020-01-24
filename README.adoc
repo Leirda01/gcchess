@@ -1,0 +1,3 @@
+= (g)CChess
+
+* Naive attempt to make a chess program using the c programming language.
