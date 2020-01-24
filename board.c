@@ -7,6 +7,11 @@ Board move(Board board, Square src, Square dest) {
   return board;
 }
 
-_Bool is_free(Board board, Square src) {
-  return board.board[src.x][src.y] == NULL;
+Board set_square(Board board, Piece piece, Square dest) {
+
+
+}
+
+Piece* get_square(Board board, Square src) {
+  return board.board[src.x][src.y];
 }

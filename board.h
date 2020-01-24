@@ -15,7 +15,8 @@ typedef struct square {
   Range x, y;
 }Square;
 
-_Bool is_free(Board board, Square src);
+Piece* get_square(Board board, Square src);
+Board set_square(Board board, Piece piece, Square dest);
 Board move(Board board, Square src, Square dest);
 
 #endif

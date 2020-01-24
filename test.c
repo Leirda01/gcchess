@@ -3,23 +3,23 @@
 #include "board.h"
 #include "pieces.h"
 
-void assert_black_rook();
-void assert_board_with_black_rook();
-void assert_piece_move_to_free_square();
-void assert_piece_move_to_occupied_square();
+void black_rook();
+void board_with_black_rook();
+void piece_move_to_free_square();
+void piece_move_to_occupied_square();
 
 int main() {
 
   puts("");
-  assert_black_rook();
-  assert_board_with_black_rook();
-  assert_piece_move_to_free_square();
-  assert_piece_move_to_occupied_square();
+  black_rook();
+  board_with_black_rook();
+  piece_move_to_free_square();
+  piece_move_to_occupied_square();
 
   return 0;
 }
 
-void assert_piece_move_to_occupied_square() {
+void piece_move_to_occupied_square() {
   printf("Declare a board with a rook on a8, a bishop on c5, then move rook to c5");
 
   Board board = {0};
@@ -36,7 +36,8 @@ void assert_piece_move_to_occupied_square() {
   assert( board.board[c][e]->color = rook );
   printf("\tOK.\n");
 }
-void assert_piece_move_to_free_square() {
+
+void piece_move_to_free_square() {
   printf("Declare a board with a rook on a8, then move it to c5");
 
   Board board = {0};
@@ -51,7 +52,8 @@ void assert_piece_move_to_free_square() {
   assert( board.board[c][e]->color = rook );
   printf("\tOK.\n");
 }
-void assert_board_with_black_rook() {
+
+void board_with_black_rook() {
   printf("Declare a board with a rook on a8");
 
   Board board = {0};
@@ -60,14 +62,14 @@ void assert_board_with_black_rook() {
   Square free_square = {c, e};
   Square occupied_square = {a, h};
 
-  assert( is_free(board, free_square) );
-  assert( !is_free(board, occupied_square) );
-  assert( board.board[a][h] );
+  assert( !get_square(board, free_square) );
+  assert( get_square(board, occupied_square) );
   assert( board.board[a][h]->color = black );
   assert( board.board[a][h]->name = rook );
   printf("\tOK.\n");
 }
-void assert_black_rook() {
+
+void black_rook() {
   printf("Declare a black rook");
 
   Piece black_rook = {black, rook};
